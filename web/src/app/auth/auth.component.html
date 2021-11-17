@@ -1,0 +1,77 @@
+<div class="auth">
+    <div class="login" *ngIf="type === AUTH_TYPE.LOGIN">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="mb-3 text-center">
+                        <h1>{{ 'auth.login.title' | translate }}</h1>
+                    </div>
+                    <form class="shadow p-4">
+                        <div class="mb-3">
+                            <label for="email">{{ 'auth.login.email' | translate }}</label>
+                            <input type="email" class="form-control" name="email" id="email" [placeholder]="'auth.login.email' | translate" [(ngModel)]="loginForm.email">
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="Password">{{ 'auth.login.password' | translate }}</label>
+                            <input type="password" class="form-control" name="password" id="Password" [placeholder]="'auth.login.password' | translate" [(ngModel)]="loginForm.password">
+                        </div>
+        
+                        <label class="mb-3">
+                            <input type="checkbox" name="RememberMe" [(ngModel)]="loginForm.remember"> {{ 'auth.login.remember' | translate }}
+                        </label>                        
+        
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary" (click)="login()">{{ 'auth.login.login' | translate }}</button>
+                        </div>
+        
+                        <hr>
+        
+                        <p class="text-center mb-0">{{ 'auth.login.noaccount' | translate }}<a [routerLink]="['/auth/register']">{{ 'auth.login.register' | translate }}</a></p>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="register" *ngIf="type === AUTH_TYPE.REGISTER">
+        <div class="container-fluid vh-100 mt-5">
+            <div class="rounded d-flex justify-content-center">
+                <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+                    <div class="text-center">
+                        <h1 class="text-primary">{{ 'auth.register.title' | translate }}</h1>
+                    </div>
+                    <div class="p-4">
+                        <form>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-primary">
+                                    <i class="bi bi-person-plus-fill text-white"></i>
+                                </span>
+                                <input type="text" class="form-control" name="username" [placeholder]="'auth.register.username' | translate" [(ngModel)]="registerForm.username">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-primary">
+                                    <i class="bi bi-envelope text-white"></i>
+                                </span>
+                                <input type="email" class="form-control" name="email" [placeholder]="'auth.register.email' | translate" [(ngModel)]="registerForm.email">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-primary">
+                                    <i class="bi bi-key-fill text-white"></i>
+                                </span>
+                                <input type="password" class="form-control" name="password" [placeholder]="'auth.register.password' | translate" [(ngModel)]="registerForm.password">
+                            </div>
+                            <div class="d-grid col-12 mx-auto">
+                                <button class="btn btn-primary" type="button" (click)="register()">{{ 'auth.register.register' | translate }}</button>
+                            </div>
+                            <p class="text-center mt-3">
+                                {{ 'auth.register.hasaccount' | translate }}
+                                <a [routerLink]="['/auth/login']">{{ 'auth.register.login' | translate }}</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

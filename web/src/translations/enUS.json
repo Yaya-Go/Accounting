@@ -1,0 +1,35 @@
+{
+    "APP_NAME": "YYG - Accounting",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "home": {
+        "menu": {
+            "title": "Tags"
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Login Form",
+            "email": "Email",
+            "password": "Password",
+            "remember": "Remember me",
+            "login": "Login",
+            "noaccount": "If you have not account? ",
+            "register": "Register Now"
+        },
+        "register": {
+            "title": "Create Account",
+            "email": "Email",
+            "password": "Password",
+            "username": "Username",
+            "register": "Sign Up",
+            "hasaccount": "Already have an account? ",
+            "login": "Sign In"
+        }
+    },
+    "dialog": {
+        "delete": {
+            "title": "Are you sure you want to delete {{ name }}?"
+        }
+    }
+}

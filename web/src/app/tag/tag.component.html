@@ -1,0 +1,44 @@
+<div class="tags">
+    <div class="summary mb-4">
+        
+    </div>
+    <div class="transactions">
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Transactions</th>
+                  <th scope="col">Total</th>                  
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of (list | async)">
+                  <th scope="row">{{ c.name }}</th>
+                  <td scope="row" class="w-150">{{ c.metadata.transaction }}</td>
+                  <td scope="row" class="w-150">{{ c.metadata.total }}</td>
+                  <td scope="row" class="w-150">
+                      <div class="actions d-flex">
+                        <i class="bi bi-pencil-square cursor-pointer"></i>
+                        <i class="bi bi-pen ms-auto cursor-pointer" (click)="editCategory(c)"></i>
+                        <i class="bi bi-trash mx-3 cursor-pointer" (click)="deleteCategory(c)"></i>
+                      </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td scope="row" colspan="5" *ngIf="isAddNew">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                            <input type="text" class="form-control" placeholder="Category Name" [(ngModel)]="new_name">
+                            <button class="btn btn-success" type="button" (click)="saveCategory()"><i class="bi bi-save"></i></button>
+                            <button class="btn btn-outline-danger" type="button" (click)="cancelCategory()"><i class="bi bi-x-square"></i></button>
+                        </div>
+                    </td>
+                    <td *ngIf="!isAddNew" scope="row" colspan="5">
+                        <button mat-raised-button color="accent" class="w-100" (click)="addNew()"><i class="bi bi-plus-lg"></i></button>
+                    </td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
+</div>

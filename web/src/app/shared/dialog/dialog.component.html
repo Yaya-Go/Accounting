@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>{{ 'dialog.delete.title' | translate:{ name: data.name } }}</h1>
+<div mat-dialog-actions>
+    <button class="ms-auto" mat-button (click)="onNoClick()">{{ 'cancel' | translate }}</button>
+    <button mat-button color="accent" [mat-dialog-close]="data" cdkFocusInitial>{{ 'confirm' | translate }}</button>
+</div>

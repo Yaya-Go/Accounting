@@ -1,0 +1,19 @@
+.tags {
+    .summary {
+        box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+        min-height: 100px;
+    }
+    .transactions {
+        padding: 15px;
+        box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+    }
+    .bi-pencil-square {
+        color: #3f51b5;
+    }
+    .bi-trash {
+        color: #f44336;
+    }
+    .w-150 {
+        width: 150px;
+    }
+}

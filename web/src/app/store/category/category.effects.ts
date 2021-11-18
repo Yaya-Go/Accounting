@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable, of } from "rxjs";
 import { CategoryService } from "src/app/services/category.service";
 import { catchError, map, switchMap } from "rxjs/operators";
@@ -13,8 +13,8 @@ export class CategoryEffects {
         private categoryService: CategoryService
     ) {}
 
-    @Effect()
-    Add: Observable<any> = this.actions$.pipe(
+    
+    Add: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(categoryActions.CategoryActionType.ADD),
         map((action: categoryActions.Add) => action.category),
         switchMap((category) => {
@@ -24,10 +24,10 @@ export class CategoryEffects {
                     catchError(err => { return of(new categoryActions.AddFailure(err)); })                    
                 );
         })
-    );
+    ));
 
-    @Effect()
-    Fetch: Observable<any> = this.actions$.pipe(
+    
+    Fetch: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(categoryActions.CategoryActionType.FETCH),
         map((action: categoryActions.Fetch) => action.tagId),
         switchMap((tagId) => {
@@ -37,10 +37,10 @@ export class CategoryEffects {
                     catchError(err => { return of(new categoryActions.FetchFailure(err)); })
                 );
         })
-    );
+    ));
 
-    @Effect()
-    Update: Observable<any> = this.actions$.pipe(
+    
+    Update: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(categoryActions.CategoryActionType.UPDATE),
         map((action: categoryActions.Update) => action.payload),
         switchMap((payload: any) => {
@@ -50,10 +50,10 @@ export class CategoryEffects {
                     catchError(err => { return of(new categoryActions.UpdateFailure(err)); })
                 )
         })
-    );
+    ));
 
-    @Effect()
-    Delete: Observable<any> = this.actions$.pipe(
+    
+    Delete: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(categoryActions.CategoryActionType.DELETE),
         map((action: categoryActions.Delete) => action.categoryId),
         switchMap((categoryId: string) => {
@@ -63,5 +63,5 @@ export class CategoryEffects {
                     catchError(err => { return of(new categoryActions.DeleteFailure(err)) })
                 )
         })
-    );
+    ));
 }

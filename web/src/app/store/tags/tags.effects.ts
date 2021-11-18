@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable, of } from "rxjs";
 import { TagsService } from "src/app/services/tags.service";
 import { catchError, map, switchMap } from "rxjs/operators";
@@ -13,8 +13,8 @@ export class TagsEffects {
         private tagService: TagsService
     ) {}
 
-    @Effect()
-    Add: Observable<any> = this.actions$.pipe(
+    
+    Add: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(tagActions.TagsActionType.ADD),
         map((action: tagActions.Add) => action.tag),
         switchMap((tag) => {
@@ -24,10 +24,10 @@ export class TagsEffects {
                     catchError(err => { return of(new tagActions.AddFailure(err)); })                    
                 );
         })
-    );
+    ));
 
-    @Effect()
-    Fetch: Observable<any> = this.actions$.pipe(
+    
+    Fetch: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(tagActions.TagsActionType.FETCH),         
         switchMap(() => {
             return this.tagService.List()
@@ -36,10 +36,10 @@ export class TagsEffects {
                     catchError(err => { return of(new tagActions.FetchFailure(err)); })
                 );
         })
-    );
+    ));
 
-    @Effect()
-    Update: Observable<any> = this.actions$.pipe(
+    
+    Update: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(tagActions.TagsActionType.UPDATE),
         map((action: tagActions.Update) => action.payload),
         switchMap((payload: any) => {
@@ -49,10 +49,10 @@ export class TagsEffects {
                     catchError(err => { return of(new tagActions.UpdateFailure(err)); })
                 )
         })
-    );
+    ));
 
-    @Effect()
-    Delete: Observable<any> = this.actions$.pipe(
+    
+    Delete: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(tagActions.TagsActionType.DELETE),
         map((action: tagActions.Delete) => action.tagId),
         switchMap((tagId: string) => {
@@ -62,5 +62,5 @@ export class TagsEffects {
                     catchError(err => { return of(new tagActions.DeleteFailure(err)) })
                 )
         })
-    );
+    ));
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Actions, Effect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable, of } from "rxjs";
 import { catchError, map, switchMap } from "rxjs/operators";
 import { AuthService } from "src/app/auth/auth.service";
@@ -15,8 +15,8 @@ export class AuthEffects {
         private router: Router
     ) {}
 
-    @Effect()
-    Login: Observable<any> = this.actions$.pipe(
+    
+    Login: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.LOGIN),
         map((action: authAction.Login) => action.payload),
         switchMap((payload: any) => {
@@ -30,10 +30,10 @@ export class AuthEffects {
               catchError(err => { return of(new authAction.LoginFailure(err)); })
             );
         })
-    )
+    ))
 
-    @Effect({ dispatch: false })
-    LoginSuccess: Observable<any> = this.actions$.pipe(
+    
+    LoginSuccess: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.LOGIN_SUCCESS),
         map((action: authAction.LoginSuccess) => action.payload.user),
         switchMap((user: any) => {
@@ -48,10 +48,10 @@ export class AuthEffects {
 
             return this.router.navigateByUrl('', { replaceUrl: true });
         })
-    )
+    ), { dispatch: false })
 
-    @Effect()
-    Register: Observable<any> = this.actions$.pipe(
+    
+    Register: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.REGISTER),
         map((action: authAction.Register) => action.payload),
         switchMap((payload: any) => {
@@ -61,24 +61,24 @@ export class AuthEffects {
                 catchError(err => { return of(new authAction.RegisterFailure(err)); })
               );
         })
-    )
+    ))
 
-    @Effect({ dispatch: false })
-    RegisterSuccess: Observable<any> = this.actions$.pipe(
+    
+    RegisterSuccess: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.REGISTER_SUCCESS),
         map((action: authAction.RegisterSuccess) => action.payload),
         switchMap((payload: any) => {
             localStorage.setItem('token', payload.token);
             return this.router.navigateByUrl('', { replaceUrl: true });
         })
-    )
+    ), { dispatch: false })
 
-    @Effect({ dispatch: false })
-    Logout: Observable<any> = this.actions$.pipe(
+    
+    Logout: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.LOGOUT),
         switchMap(() => {
             localStorage.removeItem('token');
             return this.router.navigateByUrl('/auth/login', { replaceUrl: true });
         })
-    )
+    ), { dispatch: false })
 }

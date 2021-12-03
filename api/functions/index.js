@@ -37,7 +37,7 @@ exports.onTagDeleted = functions
                     const items = await db.collection('items').where('transId', 'in', transIds).get();
 
                     if (!items.empty) {
-                        items.forEach(doc => { batch.delete(db.collection(`/items/${ doc.id }`)) });
+                        items.forEach(doc => { batch.delete(db.doc(`/items/${ doc.id }`)) });
                     }
                 }
             }
@@ -110,7 +110,7 @@ exports.onCategoryDeleted = functions
                 const items = await db.collection('items').where('transId', 'in', transIds).get();
 
                 if (!items.empty) {
-                    items.forEach(doc => { batch.delete(db.collection(`/items/${ doc.id }`)) });
+                    items.forEach(doc => { batch.delete(db.doc(`/items/${ doc.id }`)) });
                 }
             }            
 
@@ -178,7 +178,7 @@ exports.onTransactionDeleted = functions
             const items = await db.collection('items').where('transId', '==', transId).get();
             
             if (!items.empty) {
-                items.forEach(doc => { batch.delete(db.collection(`/items/${ doc.id }`)) });
+                items.forEach(doc => { batch.delete(db.doc(`/items/${ doc.id }`)) });
             }
 
             batch.update(totalDoc, total);
@@ -188,4 +188,4 @@ exports.onTransactionDeleted = functions
         } catch (error) {
             console.log(error);
         }
-    })
+    });

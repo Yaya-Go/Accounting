@@ -13,8 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { effects, reducers } from './store/app.state';
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { JwtInterceptor } from './cores/interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './cores/interceptors/error.interceptor';
 
 
 @NgModule({

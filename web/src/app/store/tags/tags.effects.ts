@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable, of } from "rxjs";
-import { TagsService } from "src/app/services/tags.service";
+import { TagsService } from "src/app/cores/services/tags.service";
 import { catchError, map, switchMap } from "rxjs/operators";
 import * as tagActions from "./tags.actions";
 import { Tag } from "src/app/config/interfaces";
@@ -20,9 +20,21 @@ export class TagsEffects {
         switchMap((tag) => {
             return this.tagService.Create(tag)
                 .pipe(
-                    map(res => { return new tagActions.AddSuccess(res as Tag); }),
+                    map((res: any) => { return new tagActions.AddSuccess(res.data as Tag); }),
                     catchError(err => { return of(new tagActions.AddFailure(err)); })                    
                 );
+        })
+    ));
+
+    Get: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(tagActions.TagsActionType.GET),
+        map((action: tagActions.Get) => action.tagId),
+        switchMap((tagId: string) => {
+            return this.tagService.Retrieve(tagId)
+                .pipe(
+                    map((res: any) => { return new tagActions.GetSuccess(res.data as Tag); }),
+                    catchError(err => { return of(new tagActions.GetFailure(err)); })
+                )
         })
     ));
 
@@ -32,7 +44,7 @@ export class TagsEffects {
         switchMap(() => {
             return this.tagService.List()
                 .pipe(
-                    map(res => { return new tagActions.FetchSuccess(res as Tag[]); }),
+                    map((res: any) => { return new tagActions.FetchSuccess(res.data as Tag[]); }),
                     catchError(err => { return of(new tagActions.FetchFailure(err)); })
                 );
         })

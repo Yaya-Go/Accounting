@@ -1,10 +1,13 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { AppState } from "../app.state";
 import { TagState } from "./tags.reducers";
 
 export const selectTagState = createFeatureSelector< TagState>('tag');
 
 export const getTags = createSelector(selectTagState, (state: TagState) => state.tags);
+
+export const getTag = createSelector(selectTagState, (state: TagState) => state.tag);
+
+export const getCategory = createSelector(selectTagState, (state: TagState) => state.category);
 
 export const getError = createSelector(selectTagState, (state: TagState) => state.error);
 

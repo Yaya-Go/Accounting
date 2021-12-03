@@ -58,13 +58,13 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        this.store.dispatch(new Delete(result.tagId));
+        this.store.dispatch(new Delete(result.id));
     });
   }
 
   editTag(tag: Tag) {
     this.edit_new_name = tag.name;
-    this.selectedTagId = tag.tagId;
+    this.selectedTagId = tag.id;
   }
 
   cancelEdit() {

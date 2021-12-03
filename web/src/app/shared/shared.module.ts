@@ -13,14 +13,21 @@ import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TransactionComponent } from './transaction/transaction.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    DialogComponent
+    DialogComponent,
+    TransactionComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule,
     MatToolbarModule,
     MatIconModule,
@@ -30,6 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgbModule
   ],
   exports: [
@@ -42,10 +51,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgbModule
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    TransactionComponent
   ]
 })
 export class SharedModule { }

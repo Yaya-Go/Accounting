@@ -53,7 +53,7 @@ export function categoryReducer(state = initialCategoryState, action: ActionsUni
         case CategoryActionType.UPDATE_SUCCESS:
             cloneState.isLoading = false;
             cloneState.message = action.payload.message;
-            const index = cloneState.list.findIndex(c => c['categoryId'] === action.payload.categoryId);
+            const index = cloneState.list.findIndex(c => c['id'] === action.payload.id);
             return { 
                 ...cloneState,
                 list: [
@@ -77,7 +77,7 @@ export function categoryReducer(state = initialCategoryState, action: ActionsUni
         case CategoryActionType.DELETE_SUCCESS:
             cloneState.isLoading = false;
             cloneState.message = action.payload.message;
-            cloneState.list = cloneState.list.filter(c => c.categoryId !== action.payload.categoryId);
+            cloneState.list = cloneState.list.filter(c => c.id !== action.payload.id);
             return cloneState;
         case CategoryActionType.DELETE_FAILURE:
             cloneState.isLoading = false;

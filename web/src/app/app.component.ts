@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { I18nService } from './services/i18n.service';
+import { I18nService } from './cores/services/i18n.service';
 import { AppState } from './store/app.state';
 
 @Component({

@@ -7,7 +7,7 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { TagComponent } from '../tag/tag.component';
+import { TagComponent } from '../components/tag/tag.component';
 
 @NgModule({
   declarations: [

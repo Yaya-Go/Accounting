@@ -10,15 +10,15 @@
                 </li>
                 <li class="list-item ps-5 mt-4 d-flex" *ngFor="let t of (tags | async)">
                     <i class="bi bi-tag me-2"></i>
-                    <a class="list-item-link" [ngClass]="{ 'd-none': t.tagId === selectedTagId }" mat-button color="primary" [routerLink]="['/tag', t.tagId]" role="button" routerLinkActive="router-link-active" ><span class="list-item-tag">{{ t.name }}</span></a>
-                    <div class="input-group" *ngIf="selectedTagId === t.tagId">
+                    <a class="list-item-link" [ngClass]="{ 'd-none': t.id === selectedTagId }" mat-button color="primary" [routerLink]="['/tag', t.id]" role="button" routerLinkActive="router-link-active" ><span class="list-item-tag">{{ t.name }}</span></a>
+                    <div class="input-group" *ngIf="selectedTagId === t.id">
                         <input type="text" class="form-control" [(ngModel)]="edit_new_name">
                         <button class="btn btn-success" type="button" (click)="saveTag()"><i class="bi bi-save"></i></button>
                         <button class="btn btn-outline-danger" type="button" (click)="cancelEdit()"><i class="bi bi-x-square"></i></button>
                     </div>
                     <span class="app-spacer"></span>
-                    <i class="bi bi-pen tag-edit" [ngClass]="{ 'd-none': t.tagId === selectedTagId }" (click)="editTag(t)"></i>                
-                    <i class="bi bi-trash tag-delete" [ngClass]="{ 'd-none': t.tagId === selectedTagId }" (click)="deleteTag(t)"></i>
+                    <i class="bi bi-pen tag-edit" [ngClass]="{ 'd-none': t.id === selectedTagId }" (click)="editTag(t)"></i>                
+                    <i class="bi bi-trash tag-delete" [ngClass]="{ 'd-none': t.id === selectedTagId }" (click)="deleteTag(t)"></i>
                 </li>
                 <li class="d-flex list-add mt-3" *ngIf="isAddNew">
                     <div class="input-group">

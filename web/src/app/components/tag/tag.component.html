@@ -7,21 +7,20 @@
             <thead>
                 <tr>
                   <th scope="col">Name</th>
-                  <th scope="col">Transactions</th>
-                  <th scope="col">Total</th>                  
-                  <th scope="col">Actions</th>
+                  <th scope="col" class="text-end">Transactions</th>
+                  <th scope="col" class="text-end">Total</th>                  
+                  <th scope="col" class="text-end">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let c of (list | async)">
                   <th scope="row">{{ c.name }}</th>
-                  <td scope="row" class="w-150">{{ c.metadata.transaction }}</td>
-                  <td scope="row" class="w-150">{{ c.metadata.total }}</td>
+                  <td scope="row" class="w-150 text-end">{{ c.metadata.transactions }}</td>
+                  <td scope="row" class="w-150 text-end">{{ c.metadata.total }}</td>
                   <td scope="row" class="w-150">
                       <div class="actions d-flex">
-                        <i class="bi bi-pencil-square cursor-pointer"></i>
-                        <i class="bi bi-pen ms-auto cursor-pointer" (click)="editCategory(c)"></i>
-                        <i class="bi bi-trash mx-3 cursor-pointer" (click)="deleteCategory(c)"></i>
+                        <i class="bi bi-pencil-square cursor-pointer ms-auto" (click)="addTransaction(c.id)"></i>                        
+                        <i class="bi bi-trash ms-3 cursor-pointer" (click)="deleteCategory(c)"></i>
                       </div>
                   </td>
                 </tr>

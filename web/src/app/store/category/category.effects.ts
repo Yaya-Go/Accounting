@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable, of } from "rxjs";
-import { CategoryService } from "src/app/services/category.service";
+import { CategoryService } from "src/app/cores/services/category.service";
 import { catchError, map, switchMap } from "rxjs/operators";
 import * as categoryActions from "./category.actions";
 import { Category } from "src/app/config/interfaces";
@@ -20,7 +20,7 @@ export class CategoryEffects {
         switchMap((category) => {
             return this.categoryService.Create(category)
                 .pipe(
-                    map(res => { return new categoryActions.AddSuccess(res as Category); }),
+                    map((res: any) => { return new categoryActions.AddSuccess(res.data as Category); }),
                     catchError(err => { return of(new categoryActions.AddFailure(err)); })                    
                 );
         })
@@ -33,7 +33,7 @@ export class CategoryEffects {
         switchMap((tagId) => {
             return this.categoryService.getCategoryByTag(tagId)
                 .pipe(
-                    map(res => { return new categoryActions.FetchSuccess(res as Category[]); }),
+                    map((res: any) => { return new categoryActions.FetchSuccess(res.data as Category[]); }),
                     catchError(err => { return of(new categoryActions.FetchFailure(err)); })
                 );
         })

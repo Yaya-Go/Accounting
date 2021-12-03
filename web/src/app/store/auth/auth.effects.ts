@@ -35,12 +35,12 @@ export class AuthEffects {
     
     LoginSuccess: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.LOGIN_SUCCESS),
-        map((action: authAction.LoginSuccess) => action.payload.user),
-        switchMap((user: any) => {
-            localStorage.setItem('token', user.token);
+        map((action: authAction.LoginSuccess) => action.payload.data),
+        switchMap((data: any) => {
+            localStorage.setItem('token', data.token);
             const remember = localStorage.getItem('remember') === 'true' ? true : false;
             if (remember) {
-                localStorage.setItem('email', user.email);
+                localStorage.setItem('email', data.email);
             } else {
                 localStorage.removeItem('email');
                 localStorage.removeItem('password');
@@ -66,7 +66,7 @@ export class AuthEffects {
     
     RegisterSuccess: Observable<any> = createEffect(() => this.actions$.pipe(
         ofType(authAction.AuthActionType.REGISTER_SUCCESS),
-        map((action: authAction.RegisterSuccess) => action.payload),
+        map((action: authAction.RegisterSuccess) => action.payload.data),
         switchMap((payload: any) => {
             localStorage.setItem('token', payload.token);
             return this.router.navigateByUrl('', { replaceUrl: true });

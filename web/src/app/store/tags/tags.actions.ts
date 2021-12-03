@@ -5,6 +5,9 @@ export enum TagsActionType {
     ADD = '[Tags] Add',
     ADD_SUCCESS = '[Tags] Add Success',
     ADD_FAILURE = '[Tags] Add Failure',
+    GET = '[Tags] Get',
+    GET_SUCCESS = '[Tags] Get Success',
+    GET_FAILURE = '[Tags] Get Failure',
     FETCH = '[Tags] Fetch',
     FETCH_SUCCESS = '[Tags] Fetch Success',
     FETCH_FAILURE = '[Tags] Fetch Failure',
@@ -28,6 +31,21 @@ export class AddSuccess implements Action {
 
 export class AddFailure implements Action {
     readonly type = TagsActionType.ADD_FAILURE;
+    constructor(public error: any) {}
+}
+
+export class Get implements Action {
+    readonly type = TagsActionType.GET;
+    constructor(public tagId: string) {}
+}
+
+export class GetSuccess implements Action {
+    readonly type = TagsActionType.GET_SUCCESS;
+    constructor(public tag: Tag) {}
+}
+
+export class GetFailure implements Action {
+    readonly type = TagsActionType.GET_FAILURE;
     constructor(public error: any) {}
 }
 
@@ -80,6 +98,9 @@ export type ActionsUnion =
     Add |
     AddSuccess |
     AddFailure |
+    Get |
+    GetSuccess |
+    GetFailure |
     Fetch |
     FetchSuccess |
     FetchFailure |

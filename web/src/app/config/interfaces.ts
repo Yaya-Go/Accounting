@@ -7,16 +7,17 @@ export interface User {
 }
 
 export interface Tag {
-    tagId?: string;
+    id?: string;
     name: string;
     updatedAt?: string;
     createdAt?: string;
     metadata?: any;
+    category?: Category[]
 }
 
 export interface Category {
     tagId: string;
-    categoryId?: string;
+    id?: string;
     name: string;
     updatedAt?: string;
     createdAt?: string;
@@ -25,7 +26,7 @@ export interface Category {
 
 export interface Transaction {
     categoryId: string;
-    transId?: string;
+    id?: string;
     name: string;
     desc?: string;
     updatedAt?: string;
@@ -39,7 +40,7 @@ export interface Transaction {
 
 export interface Item {
     transId: string;
-    itemId?: string;
+    id?: string;
     name: string;
     desc?: string;
     updatedAt?: string;

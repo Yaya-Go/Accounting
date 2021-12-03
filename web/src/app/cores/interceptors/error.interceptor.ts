@@ -6,8 +6,8 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Logout } from '../store/auth';
-import { AppState } from '../store/app.state';
+import { Logout } from '../../store/auth';
+import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { catchError } from 'rxjs/operators';
 import { Router } from "@angular/router";

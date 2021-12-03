@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:5001/yyg-accounting/us-east4/api'
+  // API: 'http://localhost:5001/yyg-accounting/us-east4/api'
+  API: 'https://us-east4-yyg-accounting.cloudfunctions.net/api'
 };
 
 /*

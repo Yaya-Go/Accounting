@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Category } from '../config/interfaces';
+import { Category } from '../../config/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategoryByTag(tagId: string) {
-    return this.http.get(`${ this.API }/tags/${ tagId }/category`);
+    return this.http.get(`${ this.API }/tag/${ tagId }/category`);
   }
 
   Create(category: Category) {

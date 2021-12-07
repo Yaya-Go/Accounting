@@ -1,0 +1,39 @@
+<div class="menu py-3 pe-2">
+    <ul class="list">
+        <li class="d-flex list-title">
+            <i class="bi bi-folder me-2"></i>
+            <a class="list-item-link" routerLink=''>{{ header | translate }}</a>
+            <span class="app-spacer"></span>
+            <button class="add-button" (click)="isAddNew = true"><i class="bi bi-plus-lg"></i></button>
+        </li>
+        <li class="list-item ps-3 mt-4 d-flex" *ngFor="let i of (items | async)">
+            <i class="bi bi-tag me-2"></i>
+            <a class="list-item-link" 
+                [ngClass]="{ 'd-none': i.id === selectId }" 
+                mat-button 
+                color="primary" 
+                [routerLink]="['/', type, i.id]" 
+                role="button" 
+                routerLinkActive="router-link-active" 
+            >
+                <span class="list-item-tag">{{ i.name }}</span>
+            </a>
+            <div class="input-group" *ngIf="selectId === i.id">
+                <input type="text" class="form-control" [(ngModel)]="editName">
+                <button class="btn btn-success" type="button" (click)="save(i)"><i class="bi bi-save"></i></button>
+                <button class="btn btn-outline-danger" type="button" (click)="cancel()"><i class="bi bi-x-square"></i></button>
+            </div>
+            <span class="app-spacer"></span>
+            <i class="bi bi-pen tag-edit" [ngClass]="{ 'd-none': i.id === selectId }" (click)="edit(i)"></i>                
+            <i class="bi bi-trash tag-delete" [ngClass]="{ 'd-none': i.id === selectId }" (click)="delete(i)"></i>
+        </li>
+        <li class="d-flex list-add mt-3" *ngIf="isAddNew">
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                <input type="text" class="form-control" placeholder="New Name" [(ngModel)]="newName">
+                <button class="btn btn-success" type="button" (click)="save()"><i class="bi bi-save"></i></button>
+                <button class="btn btn-outline-danger" type="button" (click)="cancel()"><i class="bi bi-x-square"></i></button>
+            </div>
+        </li>
+    </ul>
+</div>

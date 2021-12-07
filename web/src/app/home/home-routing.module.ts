@@ -6,13 +6,15 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
     {
         path: '',
-        component: HomeComponent,
-        children: [
-            {
-                path: 'tag/:tagId',
-                component: TagComponent
-            }
-        ]
+        component: HomeComponent        
+    },
+    {
+        path: 'tags',
+        component: TagComponent
+    },
+    {
+        path: 'tag/:tagId',
+        component: TagComponent
     }
 ];
 

@@ -1,4 +1,12 @@
-<div class="tags">
+<div class="tags d-flex">
+  <div class="side col-md-4 py-3 px-2">
+    <app-tree
+        type="tag"
+        header="Tags"
+        [items]="tags"
+    ></app-tree>
+  </div>
+  <div class="tag-content col-md-8 p-3" *ngIf="tagId">
     <div class="summary mb-4">
         
     </div>
@@ -28,16 +36,17 @@
                     <td scope="row" colspan="5" *ngIf="isAddNew">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                            <input type="text" class="form-control" placeholder="Category Name" [(ngModel)]="new_name">
+                            <input type="text" class="form-control" placeholder="Category Name" [(ngModel)]="newName">
                             <button class="btn btn-success" type="button" (click)="saveCategory()"><i class="bi bi-save"></i></button>
                             <button class="btn btn-outline-danger" type="button" (click)="cancelCategory()"><i class="bi bi-x-square"></i></button>
                         </div>
                     </td>
                     <td *ngIf="!isAddNew" scope="row" colspan="5">
-                        <button mat-raised-button color="accent" class="w-100" (click)="addNew()"><i class="bi bi-plus-lg"></i></button>
+                        <button mat-raised-button color="accent" class="w-100" (click)="isAddNew = true;"><i class="bi bi-plus-lg"></i></button>
                     </td>
                 </tr>
               </tbody>
         </table>
     </div>
+  </div>
 </div>

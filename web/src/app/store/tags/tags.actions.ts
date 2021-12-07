@@ -2,111 +2,111 @@ import { Action } from '@ngrx/store';
 import { Tag } from 'src/app/config/interfaces';
 
 export enum TagsActionType {
-    ADD = '[Tags] Add',
-    ADD_SUCCESS = '[Tags] Add Success',
-    ADD_FAILURE = '[Tags] Add Failure',
-    GET = '[Tags] Get',
-    GET_SUCCESS = '[Tags] Get Success',
-    GET_FAILURE = '[Tags] Get Failure',
-    FETCH = '[Tags] Fetch',
-    FETCH_SUCCESS = '[Tags] Fetch Success',
-    FETCH_FAILURE = '[Tags] Fetch Failure',
-    UPDATE = '[Tags] Update',
-    UPDATE_SUCCESS = '[Tags] Update Success',
-    UPDATE_FAILURE = '[Tags] Update Failure',
-    DELETE = '[Tags] Delete',
-    DELETE_SUCCESS = '[Tags] Delete Success',
-    DELETE_FAILURE = '[Tags] Delete Failure'
+    ADD_TAG = '[Tags] Add',
+    ADD_TAG_SUCCESS = '[Tags] Add Success',
+    ADD_TAG_FAILURE = '[Tags] Add Failure',
+    GET_TAG = '[Tags] Get',
+    GET_TAG_SUCCESS = '[Tags] Get Success',
+    GET_TAG_FAILURE = '[Tags] Get Failure',
+    FETCH_TAG = '[Tags] Fetch',
+    FETCH_TAG_SUCCESS = '[Tags] Fetch Success',
+    FETCH_TAG_FAILURE = '[Tags] Fetch Failure',
+    UPDATE_TAG = '[Tags] Update',
+    UPDATE_TAG_SUCCESS = '[Tags] Update Success',
+    UPDATE_TAG_FAILURE = '[Tags] Update Failure',
+    DELETE_TAG = '[Tags] Delete',
+    DELETE_TAG_SUCCESS = '[Tags] Delete Success',
+    DELETE_TAG_FAILURE = '[Tags] Delete Failure'
 }
 
-export class Add implements Action {
-    readonly type = TagsActionType.ADD;
+export class AddTag implements Action {
+    readonly type = TagsActionType.ADD_TAG;
     constructor(public tag: Tag) {}
 }
 
-export class AddSuccess implements Action {
-    readonly type = TagsActionType.ADD_SUCCESS;
+export class AddTagSuccess implements Action {
+    readonly type = TagsActionType.ADD_TAG_SUCCESS;
     constructor(public tag: Tag) {}
 }
 
-export class AddFailure implements Action {
-    readonly type = TagsActionType.ADD_FAILURE;
+export class AddTagFailure implements Action {
+    readonly type = TagsActionType.ADD_TAG_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Get implements Action {
-    readonly type = TagsActionType.GET;
+export class GetTag implements Action {
+    readonly type = TagsActionType.GET_TAG;
     constructor(public tagId: string) {}
 }
 
-export class GetSuccess implements Action {
-    readonly type = TagsActionType.GET_SUCCESS;
+export class GetTagSuccess implements Action {
+    readonly type = TagsActionType.GET_TAG_SUCCESS;
     constructor(public tag: Tag) {}
 }
 
-export class GetFailure implements Action {
-    readonly type = TagsActionType.GET_FAILURE;
+export class GetTagFailure implements Action {
+    readonly type = TagsActionType.GET_TAG_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Fetch implements Action {
-    readonly type = TagsActionType.FETCH;
+export class FetchTag implements Action {
+    readonly type = TagsActionType.FETCH_TAG;
     constructor() {}
 }
 
-export class FetchSuccess implements Action {
-    readonly type = TagsActionType.FETCH_SUCCESS;
+export class FetchTagSuccess implements Action {
+    readonly type = TagsActionType.FETCH_TAG_SUCCESS;
     constructor(public tags: Tag[]) {}
 }
 
-export class FetchFailure implements Action {
-    readonly type = TagsActionType.FETCH_FAILURE;
+export class FetchTagFailure implements Action {
+    readonly type = TagsActionType.FETCH_TAG_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Update implements Action {
-    readonly type = TagsActionType.UPDATE;
+export class UpdateTag implements Action {
+    readonly type = TagsActionType.UPDATE_TAG;
     constructor(public payload: any) {}
 }
 
-export class UpdateSuccess implements Action {
-    readonly type = TagsActionType.UPDATE_SUCCESS;
+export class UpdateTagSuccess implements Action {
+    readonly type = TagsActionType.UPDATE_TAG_SUCCESS;
     constructor(public payload: any) {}
 }
 
-export class UpdateFailure implements Action {
-    readonly type = TagsActionType.UPDATE_FAILURE;
+export class UpdateTagFailure implements Action {
+    readonly type = TagsActionType.UPDATE_TAG_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Delete implements Action {
-    readonly type = TagsActionType.DELETE;
+export class DeleteTag implements Action {
+    readonly type = TagsActionType.DELETE_TAG;
     constructor(public tagId: string) {}
 }
 
-export class DeleteSuccess implements Action {
-    readonly type = TagsActionType.DELETE_SUCCESS;
+export class DeleteTagSuccess implements Action {
+    readonly type = TagsActionType.DELETE_TAG_SUCCESS;
     constructor(public payload: any) {}
 }
 
-export class DeleteFailure implements Action {
-    readonly type = TagsActionType.DELETE_FAILURE;
+export class DeleteTagFailure implements Action {
+    readonly type = TagsActionType.DELETE_TAG_FAILURE;
     constructor(public error: any) {}
 }
 
 export type ActionsUnion = 
-    Add |
-    AddSuccess |
-    AddFailure |
-    Get |
-    GetSuccess |
-    GetFailure |
-    Fetch |
-    FetchSuccess |
-    FetchFailure |
-    Update |
-    UpdateSuccess |
-    UpdateFailure |
-    Delete |
-    DeleteSuccess |
-    DeleteFailure;
+    AddTag |
+    AddTagSuccess |
+    AddTagFailure |
+    GetTag |
+    GetTagSuccess |
+    GetTagFailure |
+    FetchTag |
+    FetchTagSuccess |
+    FetchTagFailure |
+    UpdateTag |
+    UpdateTagSuccess |
+    UpdateTagFailure |
+    DeleteTag |
+    DeleteTagSuccess |
+    DeleteTagFailure;

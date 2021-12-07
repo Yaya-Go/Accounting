@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { I18nService } from './cores/services/i18n.service';
 import { AppState } from './store/app.state';
+import { FetchTag } from './store/tags';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +18,7 @@ export class AppComponent {
   ) {
     this.i18nService.init('enUS', ['enUS', 'cnCN']);
     this.i18nService.language = 'enUS';
+
+    this.store.dispatch(new FetchTag());
   }
 }

@@ -3,12 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TransactionComponent } from 'src/app/shared/transaction/transaction.component';
-import { Get } from 'src/app/store/tags';
-import { getCategory, getTag } from 'src/app/store/tags/tags.selectors';
+import { GetTag } from 'src/app/store/tags';
+import { getCategory, getTag, getTags } from 'src/app/store/tags/tags.selectors';
 import { Category } from '../../config/interfaces';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { AppState } from '../../store/app.state';
-import { Add, Delete, Fetch } from '../../store/category';
+import { AddCategory, DeleteCategory } from '../../store/category';
 
 @Component({
   selector: 'app-tag',
@@ -17,11 +17,12 @@ import { Add, Delete, Fetch } from '../../store/category';
 })
 export class TagComponent {
 
+  tags = this.store.select(getTags);
   tagId: string;
   list = this.store.select(getCategory);
   tag = this.store.select(getTag);
 
-  new_name: string;
+  newName: string;
   isAddNew: boolean = false;
 
   constructor(
@@ -30,26 +31,22 @@ export class TagComponent {
     public dialog: MatDialog
   ) { 
     this.tagId = this.route.snapshot.params.tagId;
-    // this.store.dispatch(new Fetch(this.tagId));
-    this.store.dispatch(new Get(this.tagId));
+    if (this.tagId) {
+      this.store.dispatch(new GetTag(this.tagId));
+    }
   }
 
   saveCategory() {
-    if (!this.new_name || !this.tagId) return;
+    if (!this.newName || !this.tagId) return;
 
-    this.store.dispatch(new Add({ tagId: this.tagId, name: this.new_name }));
+    this.store.dispatch(new AddCategory({ tagId: this.tagId, name: this.newName }));
 
     this.cancelCategory();
   }
 
   cancelCategory() {
-    this.new_name = '';
+    this.newName = '';
     this.isAddNew = false;
-  }
-
-  addNew() {
-    this.new_name = '';
-    this.isAddNew = true;
   }
 
   addTransaction(categoryId: string | undefined) {
@@ -79,7 +76,7 @@ export class TagComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        this.store.dispatch(new Delete(result.categoryId));
+        this.store.dispatch(new DeleteCategory(result.id));
     });
   }
 

@@ -23,52 +23,52 @@ export function tagReducer(state = initialTagState, action: ActionsUnion): TagSt
     const cloneState = Object.assign({}, state);
 
     switch (action.type) {
-        case TagsActionType.ADD:
+        case TagsActionType.ADD_TAG:
             cloneState.isLoading = true;
             cloneState.error = null;
             cloneState.message = '';
             return cloneState;
-        case TagsActionType.ADD_SUCCESS:
+        case TagsActionType.ADD_TAG_SUCCESS:
             cloneState.isLoading = false;
             cloneState.tags = [ ...cloneState.tags, action.tag ];
             return cloneState;
-        case TagsActionType.ADD_FAILURE:
+        case TagsActionType.ADD_TAG_FAILURE:
             cloneState.isLoading = false;
             cloneState.error = action.error;
             return cloneState;
-        case TagsActionType.GET:
+        case TagsActionType.GET_TAG:
             cloneState.isLoading = true;
             cloneState.error = null;
             cloneState.message = '';
             return cloneState;
-        case TagsActionType.GET_SUCCESS:
+        case TagsActionType.GET_TAG_SUCCESS:
             cloneState.isLoading = false;
             cloneState.tag = action.tag;
             cloneState.category = action.tag.category || [];
             return cloneState;
-        case TagsActionType.GET_FAILURE:
+        case TagsActionType.GET_TAG_FAILURE:
             cloneState.isLoading = false;
             cloneState.error = action.error;
             return cloneState;
-        case TagsActionType.FETCH:
+        case TagsActionType.FETCH_TAG:
             cloneState.isLoading = true;
             cloneState.error = null;
             cloneState.message = '';
             return cloneState;
-        case TagsActionType.FETCH_SUCCESS:
+        case TagsActionType.FETCH_TAG_SUCCESS:
             cloneState.isLoading = false;
             cloneState.tags = action.tags;
             return cloneState;
-        case TagsActionType.FETCH_FAILURE:
+        case TagsActionType.FETCH_TAG_FAILURE:
             cloneState.isLoading = false;
             cloneState.error = action.error;
             return cloneState;
-        case TagsActionType.UPDATE:
+        case TagsActionType.UPDATE_TAG:
             cloneState.error = null;
             cloneState.isLoading = true;
             cloneState.message = '';
             return cloneState;
-        case TagsActionType.UPDATE_SUCCESS:
+        case TagsActionType.UPDATE_TAG_SUCCESS:
             cloneState.isLoading = false;
             cloneState.message = action.payload.message;
             const index = cloneState.tags.findIndex(t => t['id'] === action.payload.id);
@@ -83,21 +83,21 @@ export function tagReducer(state = initialTagState, action: ActionsUnion): TagSt
                     ...cloneState.tags.slice(index + 1)
                 ]
             };
-        case TagsActionType.UPDATE_FAILURE:
+        case TagsActionType.UPDATE_TAG_FAILURE:
             cloneState.isLoading = false;
             cloneState.error = action.error;
             return cloneState;
-        case TagsActionType.DELETE:
+        case TagsActionType.DELETE_TAG:
             cloneState.isLoading = true;
             cloneState.error = null;
             cloneState.message = '';
             return cloneState;
-        case TagsActionType.DELETE_SUCCESS:
+        case TagsActionType.DELETE_TAG_SUCCESS:
             cloneState.isLoading = false;
             cloneState.message = action.payload.message;
             cloneState.tags = cloneState.tags.filter(t => t.id !== action.payload.id);
             return cloneState;
-        case TagsActionType.DELETE_FAILURE:
+        case TagsActionType.DELETE_TAG_FAILURE:
             cloneState.isLoading = false;
             cloneState.error = action.error;
             return cloneState;

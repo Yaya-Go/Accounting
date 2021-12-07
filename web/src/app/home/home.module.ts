@@ -8,11 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { TagComponent } from '../components/tag/tag.component';
+import { CategoryComponent } from '../components/category/category.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    TagComponent
+    TagComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,

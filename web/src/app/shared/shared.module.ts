@@ -17,16 +17,22 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TreeComponent } from './tree/tree.component';
+import { RouterModule } from '@angular/router';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     DialogComponent,
-    TransactionComponent
+    TransactionComponent,
+    TreeComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     TranslateModule,
     MatToolbarModule,
@@ -43,6 +49,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
   exports: [
     HeaderComponent,
+    TreeComponent,
+    TableComponent,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

@@ -2,90 +2,90 @@ import { Action } from '@ngrx/store';
 import { Category } from 'src/app/config/interfaces';
 
 export enum CategoryActionType {
-    ADD = '[Category] Add',
-    ADD_SUCCESS = '[Category] Add Success',
-    ADD_FAILURE = '[Category] Add Failure',
-    FETCH = '[Category] Fetch',
-    FETCH_SUCCESS = '[Category] Fetch Success',
-    FETCH_FAILURE = '[Category] Fetch Failure',
-    UPDATE = '[Category] Update',
-    UPDATE_SUCCESS = '[Category] Update Success',
-    UPDATE_FAILURE = '[Category] Update Failure',
-    DELETE = '[Category] Delete',
-    DELETE_SUCCESS = '[Category] Delete Success',
-    DELETE_FAILURE = '[Category] Delete Failure'
+    ADD_CATEGORY = '[Category] Add',
+    ADD_CATEGORY_SUCCESS = '[Category] Add Success',
+    ADD_CATEGORY_FAILURE = '[Category] Add Failure',
+    FETCH_CATEGORY = '[Category] Fetch',
+    FETCH_CATEGORY_SUCCESS = '[Category] Fetch Success',
+    FETCH_CATEGORY_FAILURE = '[Category] Fetch Failure',
+    UPDATE_CATEGORY = '[Category] Update',
+    UPDATE_CATEGORY_SUCCESS = '[Category] Update Success',
+    UPDATE_CATEGORY_FAILURE = '[Category] Update Failure',
+    DELETE_CATEGORY = '[Category] Delete',
+    DELETE_CATEGORY_SUCCESS = '[Category] Delete Success',
+    DELETE_CATEGORY_FAILURE = '[Category] Delete Failure'
 }
 
-export class Add implements Action {
-    readonly type = CategoryActionType.ADD;
+export class AddCategory implements Action {
+    readonly type = CategoryActionType.ADD_CATEGORY;
     constructor(public category: Category) {}
 }
 
-export class AddSuccess implements Action {
-    readonly type = CategoryActionType.ADD_SUCCESS;
+export class AddCategorySuccess implements Action {
+    readonly type = CategoryActionType.ADD_CATEGORY_SUCCESS;
     constructor(public category: Category) {}
 }
 
-export class AddFailure implements Action {
-    readonly type = CategoryActionType.ADD_FAILURE;
+export class AddCategoryFailure implements Action {
+    readonly type = CategoryActionType.ADD_CATEGORY_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Fetch implements Action {
-    readonly type = CategoryActionType.FETCH;
+export class FetchCategory implements Action {
+    readonly type = CategoryActionType.FETCH_CATEGORY;
     constructor(public tagId: string) {}
 }
 
-export class FetchSuccess implements Action {
-    readonly type = CategoryActionType.FETCH_SUCCESS;
+export class FetchCategorySuccess implements Action {
+    readonly type = CategoryActionType.FETCH_CATEGORY_SUCCESS;
     constructor(public list: Category[]) {}
 }
 
-export class FetchFailure implements Action {
-    readonly type = CategoryActionType.FETCH_FAILURE;
+export class FetchCategoryFailure implements Action {
+    readonly type = CategoryActionType.FETCH_CATEGORY_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Update implements Action {
-    readonly type = CategoryActionType.UPDATE;
+export class UpdateCategory implements Action {
+    readonly type = CategoryActionType.UPDATE_CATEGORY;
     constructor(public payload: any) {}
 }
 
-export class UpdateSuccess implements Action {
-    readonly type = CategoryActionType.UPDATE_SUCCESS;
+export class UpdateCategorySuccess implements Action {
+    readonly type = CategoryActionType.UPDATE_CATEGORY_SUCCESS;
     constructor(public payload: any) {}
 }
 
-export class UpdateFailure implements Action {
-    readonly type = CategoryActionType.UPDATE_FAILURE;
+export class UpdateCategoryFailure implements Action {
+    readonly type = CategoryActionType.UPDATE_CATEGORY_FAILURE;
     constructor(public error: any) {}
 }
 
-export class Delete implements Action {
-    readonly type = CategoryActionType.DELETE;
+export class DeleteCategory implements Action {
+    readonly type = CategoryActionType.DELETE_CATEGORY;
     constructor(public categoryId: string) {}
 }
 
-export class DeleteSuccess implements Action {
-    readonly type = CategoryActionType.DELETE_SUCCESS;
+export class DeleteCategorySuccess implements Action {
+    readonly type = CategoryActionType.DELETE_CATEGORY_SUCCESS;
     constructor(public payload: any) {}
 }
 
-export class DeleteFailure implements Action {
-    readonly type = CategoryActionType.DELETE_FAILURE;
+export class DeleteCategoryFailure implements Action {
+    readonly type = CategoryActionType.DELETE_CATEGORY_FAILURE;
     constructor(public error: any) {}
 }
 
 export type ActionsUnion = 
-    Add |
-    AddSuccess |
-    AddFailure |
-    Fetch |
-    FetchSuccess |
-    FetchFailure |
-    Update |
-    UpdateSuccess |
-    UpdateFailure |
-    Delete |
-    DeleteSuccess |
-    DeleteFailure;
+    AddCategory |
+    AddCategorySuccess |
+    AddCategoryFailure |
+    FetchCategory |
+    FetchCategorySuccess |
+    FetchCategoryFailure |
+    UpdateCategory |
+    UpdateCategorySuccess |
+    UpdateCategoryFailure |
+    DeleteCategory |
+    DeleteCategorySuccess |
+    DeleteCategoryFailure;

@@ -14,53 +14,53 @@ export class CategoryEffects {
     ) {}
 
     
-    Add: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(categoryActions.CategoryActionType.ADD),
-        map((action: categoryActions.Add) => action.category),
+    AddCategory: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(categoryActions.CategoryActionType.ADD_CATEGORY),
+        map((action: categoryActions.AddCategory) => action.category),
         switchMap((category) => {
             return this.categoryService.Create(category)
                 .pipe(
-                    map((res: any) => { return new categoryActions.AddSuccess(res.data as Category); }),
-                    catchError(err => { return of(new categoryActions.AddFailure(err)); })                    
+                    map((res: any) => { return new categoryActions.AddCategorySuccess(res.data as Category); }),
+                    catchError(err => { return of(new categoryActions.AddCategoryFailure(err)); })                    
                 );
         })
     ));
 
     
-    Fetch: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(categoryActions.CategoryActionType.FETCH),
-        map((action: categoryActions.Fetch) => action.tagId),
+    FetchCategory: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(categoryActions.CategoryActionType.FETCH_CATEGORY),
+        map((action: categoryActions.FetchCategory) => action.tagId),
         switchMap((tagId) => {
             return this.categoryService.getCategoryByTag(tagId)
                 .pipe(
-                    map((res: any) => { return new categoryActions.FetchSuccess(res.data as Category[]); }),
-                    catchError(err => { return of(new categoryActions.FetchFailure(err)); })
+                    map((res: any) => { return new categoryActions.FetchCategorySuccess(res.data as Category[]); }),
+                    catchError(err => { return of(new categoryActions.FetchCategoryFailure(err)); })
                 );
         })
     ));
 
     
-    Update: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(categoryActions.CategoryActionType.UPDATE),
-        map((action: categoryActions.Update) => action.payload),
+    UpdateCategory: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(categoryActions.CategoryActionType.UPDATE_CATEGORY),
+        map((action: categoryActions.UpdateCategory) => action.payload),
         switchMap((payload: any) => {
             return this.categoryService.Update(payload.categoryId, payload.name)
                 .pipe(
-                    map((res: any) => { return new categoryActions.UpdateSuccess({ categoryId: payload.categoryId, name: payload.name, message: res.message }); }),
-                    catchError(err => { return of(new categoryActions.UpdateFailure(err)); })
+                    map((res: any) => { return new categoryActions.UpdateCategorySuccess({ categoryId: payload.categoryId, name: payload.name, message: res.message }); }),
+                    catchError(err => { return of(new categoryActions.UpdateCategoryFailure(err)); })
                 )
         })
     ));
 
     
-    Delete: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(categoryActions.CategoryActionType.DELETE),
-        map((action: categoryActions.Delete) => action.categoryId),
+    DeleteCategory: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(categoryActions.CategoryActionType.DELETE_CATEGORY),
+        map((action: categoryActions.DeleteCategory) => action.categoryId),
         switchMap((categoryId: string) => {
             return this.categoryService.Delete(categoryId)
                 .pipe(
-                    map((res: any) => { return new categoryActions.DeleteSuccess({ categoryId, message: res.message }); }),
-                    catchError(err => { return of(new categoryActions.DeleteFailure(err)) })
+                    map((res: any) => { return new categoryActions.DeleteCategorySuccess({ categoryId, message: res.message }); }),
+                    catchError(err => { return of(new categoryActions.DeleteCategoryFailure(err)) })
                 )
         })
     ));

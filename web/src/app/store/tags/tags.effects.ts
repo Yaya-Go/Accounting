@@ -14,64 +14,64 @@ export class TagsEffects {
     ) {}
 
     
-    Add: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(tagActions.TagsActionType.ADD),
-        map((action: tagActions.Add) => action.tag),
+    AddTransaction: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(tagActions.TagsActionType.ADD_TAG),
+        map((action: tagActions.AddTag) => action.tag),
         switchMap((tag) => {
             return this.tagService.Create(tag)
                 .pipe(
-                    map((res: any) => { return new tagActions.AddSuccess(res.data as Tag); }),
-                    catchError(err => { return of(new tagActions.AddFailure(err)); })                    
+                    map((res: any) => { return new tagActions.AddTagSuccess(res.data as Tag); }),
+                    catchError(err => { return of(new tagActions.AddTagFailure(err)); })                    
                 );
         })
     ));
 
-    Get: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(tagActions.TagsActionType.GET),
-        map((action: tagActions.Get) => action.tagId),
+    GetTag: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(tagActions.TagsActionType.GET_TAG),
+        map((action: tagActions.GetTag) => action.tagId),
         switchMap((tagId: string) => {
             return this.tagService.Retrieve(tagId)
                 .pipe(
-                    map((res: any) => { return new tagActions.GetSuccess(res.data as Tag); }),
-                    catchError(err => { return of(new tagActions.GetFailure(err)); })
+                    map((res: any) => { return new tagActions.GetTagSuccess(res.data as Tag); }),
+                    catchError(err => { return of(new tagActions.GetTagFailure(err)); })
                 )
         })
     ));
 
     
-    Fetch: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(tagActions.TagsActionType.FETCH),         
+    FetchTag: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(tagActions.TagsActionType.FETCH_TAG),         
         switchMap(() => {
             return this.tagService.List()
                 .pipe(
-                    map((res: any) => { return new tagActions.FetchSuccess(res.data as Tag[]); }),
-                    catchError(err => { return of(new tagActions.FetchFailure(err)); })
+                    map((res: any) => { return new tagActions.FetchTagSuccess(res.data as Tag[]); }),
+                    catchError(err => { return of(new tagActions.FetchTagFailure(err)); })
                 );
         })
     ));
 
     
-    Update: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(tagActions.TagsActionType.UPDATE),
-        map((action: tagActions.Update) => action.payload),
+    UpdateTag: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(tagActions.TagsActionType.UPDATE_TAG),
+        map((action: tagActions.UpdateTag) => action.payload),
         switchMap((payload: any) => {
             return this.tagService.Update(payload.tagId, payload.name)
                 .pipe(
-                    map((res: any) => { return new tagActions.UpdateSuccess({ tagId: payload.tagId, name: payload.name, message: res.message }); }),
-                    catchError(err => { return of(new tagActions.UpdateFailure(err)); })
+                    map((res: any) => { return new tagActions.UpdateTagSuccess({ tagId: payload.tagId, name: payload.name, message: res.message }); }),
+                    catchError(err => { return of(new tagActions.UpdateTagFailure(err)); })
                 )
         })
     ));
 
     
-    Delete: Observable<any> = createEffect(() => this.actions$.pipe(
-        ofType(tagActions.TagsActionType.DELETE),
-        map((action: tagActions.Delete) => action.tagId),
+    DeleteTag: Observable<any> = createEffect(() => this.actions$.pipe(
+        ofType(tagActions.TagsActionType.DELETE_TAG),
+        map((action: tagActions.DeleteTag) => action.tagId),
         switchMap((tagId: string) => {
             return this.tagService.Delete(tagId)
                 .pipe(
-                    map((res: any) => { return new tagActions.DeleteSuccess({ tagId, message: res.message }); }),
-                    catchError(err => { return of(new tagActions.DeleteFailure(err)) })
+                    map((res: any) => { return new tagActions.DeleteTagSuccess({ tagId, message: res.message }); }),
+                    catchError(err => { return of(new tagActions.DeleteTagFailure(err)) })
                 )
         })
     ));
